@@ -9,3 +9,11 @@ docker run --name postgres-db -e POSTGRES_PASSWORD=docker -p 5432:5432 -d postgr
 ```
 
 Versión de java: 11 en adelante
+
+##Session 1 temas:
+
+- Introducción al testing unitario
+- Buenas prácticas
+- Frameworks de testing
+- Patrones de diseño en testing
+- Anti Patrones
