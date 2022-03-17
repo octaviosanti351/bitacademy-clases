@@ -1,0 +1,11 @@
+server:
+  port: 8080
+  servlet:
+    context-path: /books/api
+
+spring:
+  datasource:
+    postgres: /home/bitlogic/IdeaProjects/unit-test-capacitacion/postgres-dummy.properties.properties
+  mvc:
+    pathmatch:
+      matching-strategy: ant_path_matcher
