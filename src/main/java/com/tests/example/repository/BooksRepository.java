@@ -22,4 +22,5 @@ public class BooksRepository{
     public List<Book> getBooks() {
         return jdbcTemplate.query(GET_BOOKS, BeanPropertyRowMapper.newInstance(Book.class));
     }
+
 }

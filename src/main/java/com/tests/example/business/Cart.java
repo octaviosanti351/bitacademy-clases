@@ -13,7 +13,7 @@ public class Cart {
    
     private Map<Object,Double> catalog;
     private Map<Object, Long> products = new HashMap<>();
-    private Boolean validUser;
+    protected Boolean validUser;
 
     public Cart(Map<Object,Double> catalog){
         this.validUser = false;
@@ -56,13 +56,14 @@ public class Cart {
         if (!validUser) throw new RuntimeException(INVALID_USER);
     }
 
-    public double total() throws ParseException {
+    public double total() {
+
             DecimalFormat df = new DecimalFormat("0.00");
-            Double unformattedCartTotal = products.keySet().stream().
+            double unformattedCartTotal = products.keySet().stream().
                     mapToDouble(addedProduct -> priceOf(addedProduct) * products.get(addedProduct)).
                     reduce(0.0, Double::sum);
-            String formate = df.format(unformattedCartTotal);
-            return  (Double) df.parse(formate);
+            return unformattedCartTotal;
+
     }
 
     private Double priceOf(Object aProduct) {

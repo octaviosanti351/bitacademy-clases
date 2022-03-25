@@ -1,8 +1,9 @@
 package com.tests.example;
 
 import com.tests.example.business.Cart;
+import com.tests.example.doubles.BookStoreTestObjects;
 import org.junit.jupiter.api.Test;
-import org.springframework.boot.test.context.SpringBootTest;
+
 
 import java.util.HashMap;
 import java.util.Map;
@@ -10,13 +11,14 @@ import java.util.Map;
 import static org.junit.jupiter.api.Assertions.*;
 import static org.junit.jupiter.api.Assertions.fail;
 
-@SpringBootTest
 public class CartTestWithFactoryMethod {
 
 
+    BookStoreTestObjects bookStoreTestObjects = new BookStoreTestObjects();
+
     public Cart getValidCart(){
         Map<Object,Double> testCatalog = new HashMap<>();
-        testCatalog.put("717029276-9", 150D);
+        testCatalog.put(bookStoreTestObjects.productSellByBookStore() , bookStoreTestObjects.productSellByBookStorePrice());
 
         Cart cart = new Cart(testCatalog);
         cart.setValidUser(true);
@@ -29,7 +31,7 @@ public class CartTestWithFactoryMethod {
 
         try {
             Cart cart = getValidCart();
-            cart.add("717029276-9", 0);
+            cart.add(bookStoreTestObjects.productSellByBookStore(), 0);
             fail();
         }
         catch (RuntimeException ex){
@@ -41,7 +43,7 @@ public class CartTestWithFactoryMethod {
     public void assertCartQuantityMoreThanOne(){
         try {
             Cart cart = getValidCart();
-            cart.add("717029276-9", 1);
+            cart.add(bookStoreTestObjects.productSellByBookStore(), 1);
             assertFalse(cart.isEmpty());
         }
         catch (RuntimeException ex){
@@ -53,7 +55,7 @@ public class CartTestWithFactoryMethod {
     public void assertCartProductIsNotSellInSupermarket(){
         try {
             Cart cart = getValidCart();
-            cart.add("717029276-xxx", 1);
+            cart.add(bookStoreTestObjects.productNotSellByBookStore(), 1);
             fail();
         }
         catch (RuntimeException ex){

@@ -3,7 +3,6 @@ package com.tests.example;
 import com.tests.example.business.Cart;
 import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.Test;
-import org.springframework.boot.test.context.SpringBootTest;
 
 import java.util.HashMap;
 import java.util.Map;
@@ -11,7 +10,6 @@ import java.util.Map;
 import static org.junit.jupiter.api.Assertions.*;
 import static org.junit.jupiter.api.Assertions.fail;
 
-@SpringBootTest
 public class CartTestWithSetupPattern {
     private static Cart cart;
 
