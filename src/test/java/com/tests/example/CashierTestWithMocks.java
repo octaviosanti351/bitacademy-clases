@@ -55,4 +55,22 @@ public class CashierTestWithMocks {
         Assertions.assertFalse(cashier.salesBookIsEmpty());
     }
 
+    @Test
+    public void assertMerchantProcessorIsCalled(){
+        Mockito.when(cart.total()).thenReturn(10D);
+        Sale sale = cashier.checkOut();
+
+        Mockito.verify(merchantProcessor, Mockito.times(1)).debit(creditCard, cart.total());
+    }
+
+    @Test
+    public void assertMerchantProcessorNotCalled(){
+        Mockito.when(cart.total()).thenReturn(0D);
+        Sale sale = cashier.checkOut();
+
+        Mockito.verify(merchantProcessor, Mockito.times(0)).debit(creditCard, cart.total());
+    }
+
+
+
 }
