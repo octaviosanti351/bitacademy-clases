@@ -20,6 +20,7 @@ public class Cart {
         this.catalog = catalog;
     }
 
+    //todo: CORRER CON COVERAGE Y VER QUE HAY QUE TESTEAR
     public void add(Object aProduct) {
         add(aProduct,1);
     }

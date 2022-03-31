@@ -11,6 +11,7 @@ import java.util.UUID;
 public class Cashier {
     public static final String CAN_NOT_CHECKOUT_EMPTY_CART = "Can not checkout an empty cart";
     public static final String CREDIT_CARD_EXPIRED = "Credit card is expired";
+    public static final String CLIENT_IS_INVALID = "Client is invalid";
     public static final String CAN_CHECKOUT_ONLY_ONCE = "Can checkout only once";
 
     private Cart cart;
@@ -39,15 +40,17 @@ public class Cashier {
         this.hasCheckedOut = false;
     }
 
+    //todo: correr tests con coverage y agregar los que falten!!
+
     public Sale checkOut() {
         assertHasNotCheckOutAlready();
-
         try {
             double total = cart.total();
-            merchantProcessor.debit(creditCard, total);
+            if(cart.total() > 0) {
+                merchantProcessor.debit(creditCard, total);
+            }
             Sale sale = new Sale(UUID.randomUUID(),this,total);
             salesBook.add(sale);
-
             return sale;
         } finally {
             hasCheckedOut = true;
@@ -66,11 +69,7 @@ public class Cashier {
         if (cart.isEmpty()) throw new RuntimeException(CAN_NOT_CHECKOUT_EMPTY_CART);
     }
 
-    public boolean isClient(Object aClient) {
-        return client.equals(aClient);
-    }
-
-    public boolean salesBookIsEmpty(){
+    public boolean salesBookIsEmpty() {
         return salesBook.isEmpty();
     }
 }

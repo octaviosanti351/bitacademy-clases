@@ -16,9 +16,6 @@ public class Sale {
 		this.total = aTotal;
 	}
 
-	public boolean isOf(Object aClient) {
-		return cashier.isClient(aClient);
-	}
 
 	public double total() {
 		return total;

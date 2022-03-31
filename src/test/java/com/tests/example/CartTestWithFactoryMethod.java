@@ -2,7 +2,11 @@ package com.tests.example;
 
 import com.tests.example.business.Cart;
 import com.tests.example.doubles.BookStoreTestObjects;
-import org.junit.jupiter.api.Test;
+import org.junit.Before;
+import org.junit.Test;
+import org.junit.platform.runner.JUnitPlatform;
+import org.junit.runner.RunWith;
+import org.mockito.junit.MockitoJUnitRunner;
 
 
 import java.util.HashMap;
@@ -11,6 +15,7 @@ import java.util.Map;
 import static org.junit.jupiter.api.Assertions.*;
 import static org.junit.jupiter.api.Assertions.fail;
 
+@RunWith(MockitoJUnitRunner.class)
 public class CartTestWithFactoryMethod {
 
 
